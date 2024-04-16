@@ -1,9 +1,7 @@
 package toyProject.toy.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import toyProject.toy.domain.item.Item;
 
 @Entity
 public class OrderItem {
@@ -11,11 +9,15 @@ public class OrderItem {
     @Column(name = "order_item_id")
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "item_id")
     private Item item;
 
+    @ManyToOne
+    @JoinColumn(name = "order_id")
     private Order order;
 
-    private String orderPrice;
+    private int orderPrice; //주문 가격
 
-    private int count;
+    private int count; //주문 수량
 }
